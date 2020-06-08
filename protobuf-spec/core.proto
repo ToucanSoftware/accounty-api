@@ -1,0 +1,15 @@
+syntax = 'proto3';
+
+package github.com.io.toucasoft.accounty.v1;
+
+option go_package = "v1";
+
+// User in the system
+message User {
+  // Id of the user
+  int64 id = 1;
+  // Username
+  string username = 2;
+  // Name
+  string name = 3;
+}
