@@ -2,7 +2,8 @@ syntax = 'proto3';
 
 package github.com.io.toucasoft.accounty.v1;
 
-option go_package = "v1";
+option go_package = "users/v1";
+import "google/api/annotations.proto";
 
 // User in the system
 message User {
@@ -12,4 +13,48 @@ message User {
   string username = 2;
   // Name
   string name = 3;
+  // Password
+  string password = 4;
+  // e-mail
+  string email = 5;
+}
+
+// User Managemenet Services
+// Handles users in the system
+service UserManagementService {
+  // Creates a new User in the system
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+    option (google.api.http) = {
+      post: "/v1/users"
+      body: "user"
+    };
+  }
+
+  // List the users in the system
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {
+    option (google.api.http) = {
+      get: "/v1/users"
+    };
+  }
+}
+
+// CreateUserRequest
+message CreateUserRequest {
+  // User to create
+  User user = 1;
+}
+
+// CreateUserResponse
+message CreateUserResponse {
+  // Created user
+  User user = 1;
+}
+
+// ListUsersRequest is a request for listing users
+message ListUsersRequest {
+}
+
+// ListUsersResponse contains the list of users found
+message ListUsersResponse {
+  repeated User users = 1;
 }
