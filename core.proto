@@ -36,6 +36,13 @@ service UserManagementService {
       get: "/v1/users"
     };
   }
+
+  // Get an existing users 
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    option (google.api.http) = {
+      get: "/v1/users/{id}"
+    };
+  }
 }
 
 // CreateUserRequest
@@ -57,4 +64,16 @@ message ListUsersRequest {
 // ListUsersResponse contains the list of users found
 message ListUsersResponse {
   repeated User users = 1;
+}
+
+// GetUserRequest is a request for getting an existing user
+message GetUserRequest {
+  // Id of the user
+  int64 id = 1;
+}
+
+// GetUserResponse contains the response with an existing user
+message GetUserResponse {
+  // Found user
+  User user = 1;
 }
