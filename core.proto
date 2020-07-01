@@ -51,6 +51,13 @@ service UserManagementService {
       body: "user"
     };
   }
+
+  // Deletes an existing user
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
+    option (google.api.http) = {
+      delete: "/v1/users/{id}"
+    };
+  }
 }
 
 // CreateUserRequest
@@ -86,7 +93,7 @@ message GetUserResponse {
   User user = 1;
 }
 
-// UpdateUserRequest is a request for updating a user
+// UpdateUserRequest is a request for updating an existing user
 message UpdateUserRequest {
   // Id of the user
   int64 id = 1;
@@ -98,4 +105,14 @@ message UpdateUserRequest {
 message UpdateUserResponse {
   // Updated user
   User user = 1;
+}
+
+// DeleteUserRequest is a request for deleteing an existing user
+message DeleteUserRequest {
+  // Id of the user
+  int64 id = 1;
+}
+
+// DeleteUserResponse contains the response of the delete operation
+message DeleteUserResponse {
 }
