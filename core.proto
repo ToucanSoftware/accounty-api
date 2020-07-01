@@ -43,6 +43,14 @@ service UserManagementService {
       get: "/v1/users/{id}"
     };
   }
+
+  // Updates an existing users 
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
+    option (google.api.http) = {
+      put: "/v1/users/{id}"
+      body: "user"
+    };
+  }
 }
 
 // CreateUserRequest
@@ -75,5 +83,19 @@ message GetUserRequest {
 // GetUserResponse contains the response with an existing user
 message GetUserResponse {
   // Found user
+  User user = 1;
+}
+
+// UpdateUserRequest is a request for updating a user
+message UpdateUserRequest {
+  // Id of the user
+  int64 id = 1;
+  // User to update
+  User user = 2;
+}
+
+// UpdateUserResponse contains the response with the updated user
+message UpdateUserResponse {
+  // Updated user
   User user = 1;
 }
