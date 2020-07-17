@@ -1,6 +1,6 @@
 syntax = 'proto3';
 
-package github.com.io.toucasoft.accounty.v1;
+package io.toucansoft.accounty.v1;
 
 option go_package = "users/v1";
 import "google/api/annotations.proto";
