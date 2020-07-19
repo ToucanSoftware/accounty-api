@@ -58,6 +58,14 @@ service UserManagementService {
       delete: "/v1/users/{id}"
     };
   }
+
+  // Authenticate a User in the system
+  rpc AuthenticateUser(AuthenticateUserRequest) returns (AuthenticateUserResponse) {
+    option (google.api.http) = {
+      put: "/v1/auth/authenticate"
+      body: "user"
+    };
+  }
 }
 
 // CreateUserRequest
@@ -115,4 +123,18 @@ message DeleteUserRequest {
 
 // DeleteUserResponse contains the response of the delete operation
 message DeleteUserResponse {
+}
+
+// AuthenticateUserRequest request for authenticate a user
+message AuthenticateUserRequest {
+  // Username
+  string username = 1;
+  // Password
+  string password = 2;
+}
+
+// AuthenticateUserResponse response of autenticated user
+message AuthenticateUserResponse {
+  // Updated user
+  User user = 1;
 }
