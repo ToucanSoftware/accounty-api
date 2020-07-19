@@ -63,7 +63,7 @@ service UserManagementService {
   rpc AuthenticateUser(AuthenticateUserRequest) returns (AuthenticateUserResponse) {
     option (google.api.http) = {
       put: "/v1/auth/authenticate"
-      body: "user"
+      body: "*"
     };
   }
 }
